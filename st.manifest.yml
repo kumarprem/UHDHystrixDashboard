@@ -1,0 +1,10 @@
+---
+applications:
+- name: st-uhd-dashboard
+  memory: 1G
+  instances: 1
+  host: st-uhd-dashboard
+  path: ./build/libs/UHDHystrixDashboard.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git#v4.0
+  env:
+    SPRING_PROFILES_ACTIVE: st,cloud,defaul

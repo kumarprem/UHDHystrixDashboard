@@ -1,0 +1,47 @@
+#Affects how many threads turbine can process
+InstanceDiscovery:
+  impl: org.springframework.cloud.netflix.turbine.EurekaInstanceDiscovery.class
+
+spring:
+  application:
+    name: uhd-dashboard
+
+server:
+  port: ${vcap.application.port:8085}
+  tomcat:
+    max-threads: 1
+
+management:
+  port: 7990
+endpoints:
+  shutdown:
+    enabled: true
+  restart:
+    enabled: true
+turbine:
+  app-config: HOMEDELIVERY-SHIPMENTSTATUS,HOMEDELIVERY-MARKETS,HOMEDELIVERY-REPORTS,HOMEDELIVERY-CARRIERS,HOMEDELIVERY-CUSTTRACK
+  cluster-name-expression: new String("default")
+    
+---
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    hostname: ${vcap.application.uris}
+    nonSecurePort: 80
+  client:
+    serviceUrl:
+      defaultZone: http://uhd-eureka-st.apps-np.homedepot.com/eureka
+
+---
+spring:
+  profiles: default
+eureka:
+  instance:
+    hostname: localhost
+    nonSecurePort: 80
+  client:
+    serviceUrl:
+      defaultZone: http://uhd-eureka-st.apps-np.homedepot.com/eureka/
+    registerWithEureka: false
+    fetchRegistry: true

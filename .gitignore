@@ -1,0 +1,9 @@
+.idea/
+/.apt_generated/
+bin/
+.settings/
+.gradle/
+.factorypath
+.project
+build
+/build

@@ -1,0 +1,90 @@
+{
+	"projectInfo": {
+		"name": "UHDHystrixDashboard",
+		"versionStrategy": "tracker",
+		"fmsNumber": "IT-08024",
+		"cdTemplate": "CD0001110",
+		"language": "java"
+	},
+
+	"artifactoryConfig": {
+		"artifactoryDomain": "https://maven.artifactory.homedepot.com/artifactory",
+		"artifactoryRepoKey": "libs-release-local",
+		"artifactoryRepoKeySnapshot": "libs-release-local",
+		"artifactoryGroup": "com/homedepot/mm/sv/homedelivery",
+		"artifactType": "jar"
+	},
+
+	  "fortify":{
+	    "project-name": "UHDHystrixDashboard",
+	    "foldersToScan": "src",
+	    "emailList": "slackMail@homedepot.com"
+	  },
+	"github": {
+		"org": "UnbundledHomeDelivery",
+		"repo": "UHDHystrixDashboard",
+		"URL": "https://github.homedepot.com/api/v3/repos"
+	},
+
+	"tracker": {
+		"projectId": 1899843
+	},
+	"slack": {
+		"channel": "#hda_cicd",
+		"botName": "HDA Concourse Pipeline"
+	},
+	"environments": {
+		"development": {
+			"manualDeployEnvs": ["st", "qa", "qp"],
+			"createChange": "False"
+		},
+		"st": {
+			"cf": {
+				"apiEndpoint": "api.run-np.homedepot.com",
+				"domain": "apps-np.homedepot.com",
+				"space": "st",
+				"org": "unbundled-home-delivery"
+			},
+			"artifactCategory": "snapshot",
+			"manualDeployLink": "https://ln0e9d.homedepot.com:9443/job/CI-HelloWorld/job/CI_Deploy/parambuild/?delay=0sec&ENVIRONMENT=st&CF_USER=&CF_PWD=",
+			"associatedBranchName": "master",
+			"snowfield-lifecycle": "uat"
+		},
+		"qa": {
+			"cf": {
+				"apiEndpoint": "api.run-np.homedepot.com",
+				"domain": "apps-np.homedepot.com",
+				"space": "qa",
+				"org": "unbundled-home-delivery"
+			},
+			"artifactCategory": "snapshot",
+			"manualDeployLink": "https://ln0e9d.homedepot.com:9443/job/CI-HelloWorld/job/CI_Deploy/parambuild/?delay=0sec&ENVIRONMENT=qa&CF_USER=&CF_PWD=",
+			"associatedBranchName": "master",
+			"snowfield-lifecycle": "uat"
+		},
+		"qp": {
+			"cf": {
+				"apiEndpoint": "api.run-np.homedepot.com",
+				"domain": "apps-np.homedepot.com",
+				"space": "qp",
+				"org": "unbundled-home-delivery"
+			},
+			"artifactCategory": "snapshot",
+			"manualDeployLink": "https://ln0e9d.homedepot.com:9443/job/CI-HelloWorld/job/CI_Deploy/parambuild/?delay=0sec&ENVIRONMENT=qa&CF_USER=&CF_PWD=",
+			"associatedBranchName": "master",
+			"snowfield-lifecycle": "uat"
+		},
+		"pr": {
+			"cf": {
+				"apiEndpoint": "api.run-zb.homedepot.com",
+				"domain": "apps.homedepot.com",
+				"space": "pr",
+				"org": "unbundled-home-delivery"
+			},
+			"artifactCategory": "snapshot",
+			"manualDeployLink": "https://ln0e9d.homedepot.com:9443/job/CI-HelloWorld/job/CI_Deploy/parambuild/?delay=0sec&ENVIRONMENT=qa&CF_USER=&CF_PWD=",
+			"associatedBranchName": "pr",
+			"snowfield-lifecycle": "pr"
+		}
+	}
+}
